@@ -46,19 +46,6 @@ class ChatAction extends Component {
     return (
       <>
         <ul className="nav flex-nowrap">
-          <li className="nav-item list-inline-item mr-1">
-            <Link
-              className="nav-link text-muted px-1"
-              title="Notifications"
-              role="button"
-              data-toggle="modal"
-              data-target="#notificationModal"
-              onClick={this.toggleNotification}
-              to="#"
-            >
-              <NotificationsSvg />
-            </Link>
-          </li>
           <li className="nav-item list-inline-item mr-0">
             <Dropdown>
               <Dropdown.Toggle
@@ -72,20 +59,6 @@ class ChatAction extends Component {
                   to="#"
                 >
                   New Chat
-                </Link>
-                <Link
-                  className="dropdown-item"
-                  onClick={this.toggleCreateGroup}
-                  to="#"
-                >
-                  Create Group
-                </Link>
-                <Link
-                  className="dropdown-item"
-                  onClick={this.toggleInviteOthers}
-                  to="#"
-                >
-                  Invite Others
                 </Link>
               </Dropdown.Menu>
             </Dropdown>
