@@ -130,24 +130,7 @@ class UserChat extends Component {
                 </div>
               </div>
               <ul className="nav flex-nowrap">
-                <li className="nav-item list-inline-item d-none d-sm-block mr-1">
-                  <Link
-                    className="nav-link text-muted px-1"
-                    onClick={this.toggleChatSearchBox}
-                    to="#"
-                  >
-                    <SearchSvg />
-                  </Link>
-                </li>
-                <li className="nav-item list-inline-item d-none d-sm-block mr-1">
-                  <Link
-                    className="nav-link text-muted px-1"
-                    to="#"
-                    title="Call Now"
-                  >
-                    <CallNowSvg />
-                  </Link>
-                </li>
+
                 <li className="nav-item list-inline-item d-none d-sm-block mr-0">
                   <Dropdown>
                     <Dropdown.Toggle
@@ -157,55 +140,11 @@ class UserChat extends Component {
                     <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
                       <Link
                         className="dropdown-item align-items-center d-flex"
-                        onClick={this.toggleChatSearchBox}
-                        to="#"
-                      >
-                        <SearchSvg className="hw-20 mr-2" />
-                        <span>Search</span>
-                      </Link>
-
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
                         to="#"
                         onClick={this.toggleShowProfileDetail}
                       >
                         <InfoSvg className="hw-20 mr-2" />
-                        <span>View Info</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <MuteNotificationsSvg className="hw-20 mr-2" />
-                        <span>Mute Notifications</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <WallpaperSvg className="hw-20 mr-2" />
-                        <span>Wallpaper</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <ArchiveSvg className="hw-20 mr-2" />
-                        <span>Archive</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <DeleteSvg className="hw-20 mr-2" />
-                        <span>Delete</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex text-danger"
-                        to="#"
-                      >
-                        <BlockSvg className="hw-20 mr-2" />
-                        <span>Block</span>
+                        <span>View Transaction History</span>
                       </Link>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -220,60 +159,10 @@ class UserChat extends Component {
                       <Link
                         className="dropdown-item align-items-center d-flex"
                         to="#"
-                      >
-                        <CallNowSvg className="hw-20 mr-2" />
-                        <span>Call</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        onClick={this.toggleChatSearchBox}
-                        to="#"
-                      >
-                        <SearchSvg className="hw-20 mr-2" />
-                        <span>Search</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
                         onClick={this.toggleShowProfileDetail}
                       >
                         <InfoSvg className="hw-20 mr-2" />
-                        <span>View Info</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <MuteNotificationsSvg className="hw-20 mr-2" />
-                        <span>Mute Notifications</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <WallpaperSvg className="hw-20 mr-2" />
-                        <span>Wallpaper</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <ArchiveSvg className="hw-20 mr-2" />
-                        <span>Archive</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex"
-                        to="#"
-                      >
-                        <DeleteSvg className="hw-20 mr-2" />
-                        <span>Delete</span>
-                      </Link>
-                      <Link
-                        className="dropdown-item align-items-center d-flex text-danger"
-                        to="#"
-                      >
-                        <BlockSvg className="hw-20 mr-2" />
-                        <span>Block</span>
+                        <span>View Transaction History</span>
                       </Link>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -472,7 +361,7 @@ class UserChat extends Component {
                     </div>
 
                     <span className="message-date">9:12am</span>
-                    <span className="message-status">Edited</span>
+                    <span className="message-status">Edited</span> 
 
                     <MessageDropdown />
                   </div>
@@ -729,23 +618,8 @@ class UserChat extends Component {
                   <div className="avatar avatar-xl mx-5 mb-3">
                     <img className="avatar-img" src={avatar2} alt=""></img>
                   </div>
-                  <h5 className="mb-1">Catherine Richardson</h5>
-                  <p className="text-muted d-flex align-items-center justify-content-center">
-                    <LocationSvg />
-                    <span>San Fransisco, CA</span>
-                  </p>
+                  <h5 className="mb-1">WALLET ADDRESS</h5>
 
-                  <div className="d-flex align-items-center justify-content-center">
-                    <div className="btn btn-outline-default btn-icon rounded-circle mx-1">
-                      <AddContactSvg />
-                    </div>
-                    <div className="btn btn-primary btn-icon rounded-circle text-light mx-1">
-                      <HeartSvg />
-                    </div>
-                    <div className="btn btn-danger btn-icon rounded-circle text-light mx-1">
-                      <BlockSvg />
-                    </div>
-                  </div>
                 </div>
                 <div className="chat-info-group">
                   <Link
@@ -754,98 +628,14 @@ class UserChat extends Component {
                     to="#"
                     onClick={this.toggleShowUserInformation}
                   >
-                    <h6 className="mb-0">User Information</h6>
+                    <h6 className="mb-0"> Transaction History</h6>
                     <InfoSvg className="hw-20 text-muted" />
                   </Link>
 
-                  <div
-                    className={
-                      "chat-info-group-body collapse " +
-                      (this.state.showUserInformation ? "show" : "")
-                    }
-                  >
-                    <div className="chat-info-group-content list-item-has-padding">
-                      <ul className="list-group list-group-flush ">
-                        <li className="list-group-item border-0">
-                          <p className="small text-muted mb-0">Phone</p>
-                          <p className="mb-0">+01-222-364522</p>
-                        </li>
-                        <li className="list-group-item border-0">
-                          <p className="small text-muted mb-0">Email</p>
-                          <p className="mb-0">catherine.richardson@gmail.com</p>
-                        </li>
-                        <li className="list-group-item border-0">
-                          <p className="small text-muted mb-0">Address</p>
-                          <p className="mb-0">
-                            1134 Ridder Park Road, San Fransisco, CA 94851
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="chat-info-group">
-                  <Link
-                    className="chat-info-group-header"
-                    data-toggle="collapse"
-                    to="#"
-                    onClick={this.toggleShowLastMedia}
-                  >
-                    <h6 className="mb-0">Last Media</h6>
-                    <GallarySvg className="hw-20 text-muted" />
-                  </Link>
-
-                  <div
-                    className={
-                      "chat-info-group-body collapse " +
-                      (this.state.showLastMedia ? "show" : "")
-                    }
-                    id="shared-media"
-                  >
-                    <div className="chat-info-group-content">
-                      <div className="form-row">
-                        <div className="col-4 col-md-2 col-xl-4">
-                          <Link to="#">
-                            <img
-                              src={photo1}
-                              className="img-fluid rounded border"
-                              alt=""
-                            ></img>
-                          </Link>
-                        </div>
-                        <div className="col-4 col-md-2 col-xl-4">
-                          <Link to="#">
-                            <img
-                              src={photo2}
-                              className="img-fluid rounded border"
-                              alt=""
-                            ></img>
-                          </Link>
-                        </div>
-                        <div className="col-4 col-md-2 col-xl-4">
-                          <Link to="#">
-                            <img
-                              src={photo3}
-                              className="img-fluid rounded border"
-                              alt=""
-                            ></img>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+  
                 </div>
                 <div className="chat-info-group">
-                  <Link
-                    className="chat-info-group-header"
-                    data-toggle="collapse"
-                    to="#"
-                    onClick={this.toggleShowDocuments}
-                  >
-                    <h6 className="mb-0">Documents</h6>
-                    <DocumentsSvg className="hw-20 text-muted" />
-                  </Link>
+
 
                   <div
                     className={
@@ -854,111 +644,7 @@ class UserChat extends Component {
                     }
                     id="shared-files"
                   >
-                    <div className="chat-info-group-content list-item-has-padding">
-                      <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                          <div className="document">
-                            <div className="btn btn-primary btn-icon rounded-circle text-light mr-2">
-                              <ProfileDocumentsSvg />
-                            </div>
 
-                            <div className="document-body">
-                              <h6 className="text-truncate">
-                                <Link
-                                  to="#"
-                                  className="text-reset"
-                                  title="effects-of-global-warming.docs"
-                                >
-                                  Effects-of-global-warming.docs
-                                </Link>
-                              </h6>
-
-                              <ul className="list-inline small mb-0">
-                                <li className="list-inline-item">
-                                  <span className="text-muted">79.2 KB</span>
-                                </li>
-                                <li className="list-inline-item">
-                                  <span className="text-muted text-uppercase">
-                                    docs
-                                  </span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="document-options ml-1">
-                              <DocumentOptionDropdown />
-                            </div>
-                          </div>
-                        </li>
-                        <li className="list-group-item">
-                          <div className="document">
-                            <div className="btn btn-primary btn-icon rounded-circle text-light mr-2">
-                              <ProfileDocumentsSvg />
-                            </div>
-
-                            <div className="document-body">
-                              <h6 className="text-truncate">
-                                <Link
-                                  to="#"
-                                  className="text-reset"
-                                  title="global-warming-data-2020.xlxs"
-                                >
-                                  Global-warming-data-2020.xlxs
-                                </Link>
-                              </h6>
-
-                              <ul className="list-inline small mb-0">
-                                <li className="list-inline-item">
-                                  <span className="text-muted">79.2 KB</span>
-                                </li>
-                                <li className="list-inline-item">
-                                  <span className="text-muted text-uppercase">
-                                    xlxs
-                                  </span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="document-options ml-1">
-                              <DocumentOptionDropdown />
-                            </div>
-                          </div>
-                        </li>
-                        <li className="list-group-item">
-                          <div className="document">
-                            <div className="btn btn-primary btn-icon rounded-circle text-light mr-2">
-                              <ProfileDocumentsSvg />
-                            </div>
-
-                            <div className="document-body">
-                              <h6 className="text-truncate">
-                                <Link
-                                  to="#"
-                                  className="text-reset"
-                                  title="great-presentation-on global-warming-2020.ppt"
-                                >
-                                  Great-presentation-on global-warming-2020.ppt
-                                </Link>
-                              </h6>
-                              <ul className="list-inline small mb-0">
-                                <li className="list-inline-item">
-                                  <span className="text-muted">79.2 KB</span>
-                                </li>
-                                <li className="list-inline-item">
-                                  <span className="text-muted text-uppercase">
-                                    ppt
-                                  </span>
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="document-options ml-1">
-                              <DocumentOptionDropdown />
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
                   </div>
                 </div>
               </div>

@@ -183,7 +183,7 @@ class GroupChat extends Component {
                         onClick={this.toggleShowProfileDetail}
                       >
                         <InfoSvg className="hw-20 mr-2" />
-                        <span>View Info</span>
+                        <span>View Transaction History</span>
                       </Link>
 
                       <Link
