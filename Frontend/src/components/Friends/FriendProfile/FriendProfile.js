@@ -40,14 +40,12 @@ class FriendProfile extends Component {
                     </div>
 
                     <div className="d-flex flex-column align-items-center">
-                      <h5 className="mb-1">Catherine Richardson</h5>
+                      <h5 className="mb-1">Wallet Address / name </h5> {/* name? */}
                       <div className="d-flex mt-2">
                         <div className="btn btn-primary btn-icon rounded-circle text-light mx-2">
-                          <ChatSvg />
+                          <ChatSvg />     {/* add a button to go to chat */}
                         </div>
-                        <div className="btn btn-success btn-icon rounded-circle text-light mx-2">
-                          <CallsSvg />
-                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -89,122 +87,16 @@ class FriendProfile extends Component {
                     <li className="list-group-item">
                       <div className="media align-items-center">
                         <div className="media-body">
-                          <p className="small text-muted mb-0">Local Time</p>
-                          <p className="mb-0">10:25 PM</p>
+                          <p className="small text-muted mb-0">Wallet Address</p>
+                          <p className="mb-0">0x3jdsgkh493hsdjfkgs</p> {/*make dynamic*/}
                         </div>
                         <ClockSvg className="text-muted hw-20" />
                       </div>
                     </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Birthdate</p>
-                          <p className="mb-0">20/11/1992</p>
-                        </div>
-                        <CalendarSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Phone</p>
-                          <p className="mb-0">+01-222-364522</p>
-                        </div>
-                        <CallsSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Email</p>
-                          <p className="mb-0">catherine.richardson@gmail.com</p>
-                        </div>
-                        <MailSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Website</p>
-                          <p className="mb-0">www.catherichardson.com</p>
-                        </div>
-                        <GlobeSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Address</p>
-                          <p className="mb-0">
-                            1134 Ridder Park Road, San Fransisco, CA 94851
-                          </p>
-                        </div>
-                        <HomeSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
+                    
                   </ul>
                 </div>
 
-                <div className="card">
-                  <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Facebook</p>
-                          <Link
-                            className="font-size-sm font-weight-medium"
-                            to="#"
-                          >
-                            @cathe.richardson
-                          </Link>
-                        </div>
-                        <FacebookSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Twitter</p>
-                          <Link
-                            className="font-size-sm font-weight-medium"
-                            to="#"
-                          >
-                            @cathe.richardson
-                          </Link>
-                        </div>
-                        <TwitterSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Instagram</p>
-                          <Link
-                            className="font-size-sm font-weight-medium"
-                            to="#"
-                          >
-                            @cathe.richardson
-                          </Link>
-                        </div>
-                        <InstagramSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                    <li className="list-group-item">
-                      <div className="media align-items-center">
-                        <div className="media-body">
-                          <p className="small text-muted mb-0">Linkedin</p>
-                          <Link
-                            className="font-size-sm font-weight-medium"
-                            to="#"
-                          >
-                            @cathe.richardson
-                          </Link>
-                        </div>
-                        <LinkedinSvg className="text-muted hw-20" />
-                      </div>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>

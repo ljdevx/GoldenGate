@@ -31,19 +31,7 @@ function NavBar(props) {
             <ChatsSvg />
           </Link>
         </li>
-        <li className="nav-item">
-          <Link
-            className={
-              "nav-link p-0 py-xl-3 " +
-              (props.activeMenu === "calls" ? "active" : "")
-            }
-            id="calls-tab"
-            to="/Calls"
-            title="Calls"
-          >
-            <CallsSvg />
-          </Link>
-        </li>
+        
         <li className="nav-item">
           <Link
             className={
@@ -57,6 +45,7 @@ function NavBar(props) {
             <FriendsSvg />
           </Link>
         </li>
+        {/*
         <li className="nav-item">
           <Link
             className={
@@ -70,6 +59,7 @@ function NavBar(props) {
             <AccountSvg />
           </Link>
         </li>
+        */}
       </ul>
     </div>
   );

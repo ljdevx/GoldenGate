@@ -14,19 +14,10 @@ class FriendList extends Component {
     search: "",
     AllFriends: [
       {
-        name: "Albert K. Johansen",
-        location: "San Fransisco, CA",
+        name: "0x",
+        location: "eth",
         active: true,
-      },
-      { name: "Alice R. Botello", location: "Brentwood, NY" },
-      { name: "Brittany K. Williams", location: "Scranton, PA" },
-      { name: "Christopher Garcia", location: "Riverside, CA" },
-      { name: "Casey Mcbride", location: "Zephyr, NC" },
-      { name: "Gemma Mendez", location: "Frederick, MD" },
-      { name: "Katelyn Valdez", location: "Jackson, TN" },
-      { name: "Katherine Schneider", location: "Saginaw, MI" },
-      { name: "Maizie Edwards", location: "Greensboro, NC" },
-      { name: "Susan K. Taylor", location: "Centerville, VA" },
+      }
     ],
     FilteredFriends: [],
     filteredGroups: [],
@@ -94,7 +85,7 @@ class FriendList extends Component {
               <div className="hide-scrollbar" id="friendsList">
                 <div className="sidebar-header sticky-top p-2">
                   <div className="d-flex justify-content-between align-items-center">
-                    <h5 className="font-weight-semibold mb-0">Friends</h5>
+                    <h5 className="font-weight-semibold mb-0">Address Book</h5>
                     <ChatAction />
                   </div>
                   <div className="sidebar-sub-header">
