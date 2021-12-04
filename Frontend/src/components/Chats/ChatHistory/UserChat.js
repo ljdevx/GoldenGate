@@ -312,16 +312,15 @@ class UserChat extends Component {
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                        I have to give a presentation on global warming on
-                        Friday, and I am so nervous.
+                        FROM A CONTRACT: thing you receive
                       </span>
                     </div>
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
+                      <img alt="" src={avatar6}></img>  {/* update impage */}
                     </div>
-                    <span className="message-date">9:12am</span>
+                    <span className="message-date">9:12am</span> {/* update timestamp */}
                     <MessageDropdown />
                   </div>
                 </div>
@@ -329,285 +328,23 @@ class UserChat extends Component {
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                        First of all, you need to understand the subject matter
-                        thoroughly. You need to know what is global warming,
-                        what causes global warming, and what people should do to
-                        abate the effects of global warming.
+                       TO A CONTRACT: thing you send
                       </span>
                     </div>
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
+                      <img alt="" src={avatar6}></img> {/* update timestamp */}
                     </div>
-                    <span className="message-date">9:12am</span>
-                    <span className="message-status">Edited</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        I have done a lot of research on the subject, and I know
-                        I can answer any questions I will receive from the
-                        audience.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        I should talk about more precisely the sequence of my
-                        presentation?
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message self">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        Yes, what you should present first, second and third…
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <div className="document">
-                        <div className="btn btn-primary btn-icon rounded-circle text-light mr-2">
-                          <ChatDocFileSvg />
-                        </div>
-
-                        <div className="document-body">
-                          <h6>
-                            <Link
-                              to="#"
-                              className="text-reset"
-                              title="global-warming-data-2020.xlxs"
-                            >
-                              global-warming-data-2020.xlxs
-                            </Link>
-                          </h6>
-                          <ul className="list-inline small mb-0">
-                            <li className="list-inline-item">
-                              <span className="text-muted">79.2 KB</span>
-                            </li>
-                            <li className="list-inline-item">
-                              <span className="text-muted text-uppercase">
-                                xlxs
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        If that is the case, then I already have an outline. To
-                        make it easy for my audience to follow the presentation,
-                        I intend to post the outline on the board at all time
-                        during my speech.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message-divider pb-2" data-label="Today"></div>
-
-                <div className="message self">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        Good idea! By the way, do you have any facts to back you
-                        up? For example, change of climate, yearly disasters…
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-
-                    <span className="message-date">9:12am</span>
-                    <span className="message-status">Edited</span>
-
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <h6>I have shared some photos, Please have a look.</h6>
-                      <div className="form-row">
-                        <LightgalleryProvider>
-                          <div className="col">
-                            <LightgalleryItem
-                              group={"group1"}
-                              src={photo1}
-                              thumb={photo1}
-                            >
-                              <img
-                                alt="photo1"
-                                src={photo1}
-                                style={{ width: "100%" }}
-                              />
-                            </LightgalleryItem>
-                          </div>
-                          <div className="col">
-                            <LightgalleryItem
-                              group={"group1"}
-                              src={photo2}
-                              thumb={photo2}
-                            >
-                              <img
-                                alt="photo2"
-                                src={photo2}
-                                style={{ width: "100%" }}
-                              />
-                            </LightgalleryItem>
-                          </div>
-                          <div className="col">
-                            <LightgalleryItem
-                              group={"group1"}
-                              src={photo3}
-                              thumb={photo3}
-                            >
-                              <img
-                                alt="photo3"
-                                src={photo3}
-                                style={{ width: "100%" }}
-                              />
-                            </LightgalleryItem>
-                          </div>
-                        </LightgalleryProvider>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        No, I have not thought about that. I better get some
-                        statistics from the Internet. I should not have any
-                        problems since the Internet has all kinds of data.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message self">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        Pictures will keep your audience from being bored. In
-                        order for you to succeed, you need to keep them
-                        interested and involved.
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-
-                <div className="message">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        You are absolutely right. I will take time to practice
-                        and to learn to relax and express myself really well.
-                        Wish me luck, Catherine!
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date">9:12am</span>
-                    <MessageDropdown />
-                  </div>
-                </div>
-                <div className="message self">
-                  <div className="message-wrapper">
-                    <div className="message-content">
-                      <span>
-                        I know you. You can do it. Good luck, Jennifer!
-                      </span>
-                    </div>
-                  </div>
-                  <div className="message-options">
-                    <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>
-                    </div>
-                    <span className="message-date" ref={this.messagesEndRef}>
+                    <span className="message-date" ref={this.messagesEndRef}> {/*append to last message */}
                       Just now
                     </span>
+                    
                     <MessageDropdown />
                   </div>
                 </div>
+                     
+              
               </div>
               <div className="chat-finished" id="chat-finished"></div>
             </div>

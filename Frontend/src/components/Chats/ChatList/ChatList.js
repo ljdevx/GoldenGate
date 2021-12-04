@@ -24,7 +24,7 @@ import {
 } from "../../../Config/Config";
 import ChatMessage from "./Message/ChatMessage";
 
-// Chat list component - To display list
+// Chat list component - To display list // TODO- update with dynamic API call 
 class ChatList extends Component {
   state = {
     ChatUserId: "",
@@ -41,96 +41,8 @@ class ChatList extends Component {
         message: "I’m sorry, I didn’t catch that. Could you please repeat?",
         status: UserStatus.Online,
         filter: ChatFilterOptions.Friends,
-      },
-      {
-        ChatUserId: "group1",
-        to: "/Chats/group1",
-        name: "Themeforest Group",
-        profile: <UserGroupSvg />,
-        profileType: ProfileType.Svg,
-        time: "10:20 pm",
-        message:
-          "Jeny: That’s pretty common. I heard that a lot of people had the same experience.",
-        endIcon: <LockSvg />,
-        filter: ChatFilterOptions.Groups,
-      },
-      {
-        to: "#",
-        name: "Eva Walker",
-        profile: "EW",
-        profileType: ProfileType.Text,
-        time: "09:36 am",
-        message:
-          "You’re kidding! I drive a motorcycle as well. What type of bike do you have?",
-        badge: 2,
-        status: UserStatus.Offline,
-        filter: ChatFilterOptions.Unread,
-      },
-      {
-        to: "#",
-        name: "Christopher Garcia",
-        time: "Yesterday",
-        profile: avatar3,
-        profileType: ProfileType.Image,
-        status: UserStatus.Busy,
-        MessageSvg: <PhotoSvg />,
-        message: "Photo",
-        filter: ChatFilterOptions.Friends,
-      },
-      {
-        to: "#",
-        name: "Christina Turner",
-        time: "31/05/20",
-        profile: avatar4,
-        profileType: ProfileType.Image,
-        status: UserStatus.Online,
-        message:
-          "I’m working hard in Maths, Physics and Chemistry. I have planning to appear in I.I.T. after XII.",
-        filter: ChatFilterOptions.Friends,
-      },
-      {
-        to: "#",
-        name: "Tammy Martinez",
-        time: "24/04/20",
-        profile: avatar5,
-        profileType: ProfileType.Image,
-        status: UserStatus.Offline,
-        MessageSvg: <DocsSvg />,
-        message: "project_guidelines.docs",
-        filter: ChatFilterOptions.Friends,
-      },
-      {
-        to: "#",
-        name: "Bonnie Torres",
-        time: "20/04/20",
-        profile: avatar6,
-        profileType: ProfileType.Image,
-        status: UserStatus.Offline,
-        message: "Catch you later! Bye-bye!",
-        endIcon: <MuteSvg />,
-        filter: ChatFilterOptions.Friends,
-      },
-      {
-        to: "#",
-        name: "Jacqueline James",
-        time: "15/02/20",
-        profile: avatar7,
-        profileType: ProfileType.Image,
-        status: UserStatus.Offline,
-        MessageSvg: <MissedCallSvg />,
-        message: "Missed call",
-        filter: ChatFilterOptions.Friends,
-      },
-      {
-        to: "#",
-        name: "Annie Richardson",
-        time: "26/12/19",
-        profile: avatar8,
-        profileType: ProfileType.Image,
-        status: UserStatus.Away,
-        message: "I think I have everything I need, thank you!",
-        filter: ChatFilterOptions.Archived,
-      },
+      }
+      
     ],
     FilterChatList: [],
   };
