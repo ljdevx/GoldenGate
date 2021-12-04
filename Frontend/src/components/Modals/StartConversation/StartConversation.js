@@ -46,75 +46,7 @@ class StartConversation extends Component {
             </div>
 
             <div className="col-12">
-              <ul className="list-group list-group-flush">
-                <li className="list-group-item">
-                  <div className="media">
-                    <div className="avatar avatar-online mr-2">
-                      <img src={avatar1} alt="avatar1"></img>
-                    </div>
-
-                    <div className="media-body">
-                      <h6 className="text-truncate">
-                        <Link className="text-reset" to="#">
-                          Catherine Richardson
-                        </Link>
-                      </h6>
-                      <p className="text-muted mb-0">Online</p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="list-group-item">
-                  <div className="media">
-                    <div className="avatar avatar-online mr-2">
-                      <img src={avatar2} alt=""></img>
-                    </div>
-
-                    <div className="media-body">
-                      <h6 className="text-truncate">
-                        <Link to="#" className="text-reset">
-                          Katherine Schneider
-                        </Link>
-                      </h6>
-                      <p className="text-muted mb-0">Online</p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="list-group-item">
-                  <div className="media">
-                    <div className="avatar avatar-offline mr-2">
-                      <img src={avatar3} alt=""></img>
-                    </div>
-
-                    <div className="media-body">
-                      <h6 className="text-truncate">
-                        <Link to="#" className="text-reset">
-                          Brittany K. Williams
-                        </Link>
-                      </h6>
-
-                      <p className="text-muted mb-0">Offline</p>
-                    </div>
-                  </div>
-                </li>
-
-                <li className="list-group-item">
-                  <div className="media">
-                    <div className="avatar avatar-busy mr-2">
-                      <img src={avatar4} alt=""></img>
-                    </div>
-                    <div className="media-body">
-                      <h6 className="text-truncate">
-                        <Link to="#" className="text-reset">
-                          Christina Turner
-                        </Link>
-                      </h6>
-                      <p className="text-muted mb-0">Busy</p>
-                    </div>
-                  </div>
-                </li>
-
+              <ul className="list-group list-group-flush"> 
                 <li className="list-group-item">
                   <div className="media">
                     <div className="avatar avatar-away mr-2">
