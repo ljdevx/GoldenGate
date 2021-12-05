@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./assets/webfonts/inter/inter.css";
 import "./assets/css/app.min.css";
 
-import { MetaMaskProvider } from "metamask-react";
+// import { MetaMaskProvider } from "metamask-react";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
@@ -11,9 +11,9 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <React.StrictMode>
-    <MetaMaskProvider>
+    {/* <MetaMaskProvider> */}
       <App />
-    </MetaMaskProvider>
+    {/* </MetaMaskProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

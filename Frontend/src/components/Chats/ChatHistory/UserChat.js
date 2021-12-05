@@ -70,6 +70,32 @@ class UserChat extends Component {
     };
   }
 
+  attachMessageHandler = (event) => {
+    event.preventDefault();
+
+    var body = {};
+    body.fromAddress = 'c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77'; //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
+    body.fromChain = 'ETH';
+    body.conversationId = 'c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77';
+    body.message = 'Heyyy'; //this.state.message;
+    body.signaure = '0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b';
+
+    fetch( 'https://api.creatornfts.xyz/api/w3mail/sendMessage', {
+      method: 'post',
+      body: JSON.stringify(body),
+      headers: {'Content-Type': 'application/json'}
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.success == true) {
+
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   toggleShowProfileDetail = () => {
     this.setState({ showProfileDetail: !this.state.showProfileDetail });
     document.body.click();
@@ -103,10 +129,12 @@ class UserChat extends Component {
   };
 
   handleEmojiSelect = (param) => {
-    this.setState({ message: this.state.message + param.native });
+    this.setState({ message: this.state.message });
   };
 
   render() {
+    
+    const { message } = this.state;
     return (
       <main className={"main main-visible"}>
         <div className="chats">
@@ -276,6 +304,9 @@ class UserChat extends Component {
                         </Dropdown.Menu>
                       </Dropdown>
                     </div>
+
+
+{/* ///////////////////////////////////////////*/}
                     <input
                       type="text"
                       className="form-control transparent-bg border-0 no-resize hide-scrollbar"
@@ -284,6 +315,7 @@ class UserChat extends Component {
                       value={this.state.message}
                       onChange={this.handleMessageChange}
                     ></input>
+{/* ///////////////////////////////////////////*/}
                     <div className="input-group-prepend mr-sm-2 mr-1">
                       <Dropdown className="w-100">
                         <Dropdown.Toggle
@@ -393,3 +425,4 @@ class UserChat extends Component {
   }
 }
 export default UserChat;
+

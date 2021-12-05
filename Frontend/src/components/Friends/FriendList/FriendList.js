@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ReactComponent as SearchSvg } from "../../../assets/media/icons/search.svg";
 import Group from "./Group";
 import Friend from "./Friend";
-import { useMetaMask } from "metamask-react";
+// import { useMetaMask } from "metamask-react";
 import { withMetamaskHOC } from "../../Home/MetamaskElement"
 
 
