@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import avatar2 from "../../../assets/media/avatar/2.png";
 import avatar6 from "../../../assets/media/avatar/6.png";
+import eth from "../../../assets/media/avatar/eth.png";
 import photo1 from "../../../assets/media/shared-photos/01.jpg";
 import photo2 from "../../../assets/media/shared-photos/02.jpg";
 import photo3 from "../../../assets/media/shared-photos/03.jpg";
@@ -122,7 +123,7 @@ class UserChat extends Component {
               </Link>
               <div className="media chat-name align-items-center text-truncate">
                 <div className="avatar avatar-online d-none d-sm-inline-block mr-3">
-                  <img src={avatar2} alt=""></img>
+                  <img src={eth} alt=""></img>
                 </div>
                 <div className="media-body align-self-center ">
                   <h6 className="text-truncate mb-0">Catherine Richardson</h6>
@@ -207,7 +208,7 @@ class UserChat extends Component {
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>  {/* update impage */}
+                      <img alt="" src={eth}></img>  {/* update impage */}
                     </div>
                     <span className="message-date">9:12am</span> {/* update timestamp */}
                     <MessageDropdown />
@@ -223,7 +224,7 @@ class UserChat extends Component {
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img> {/* update timestamp */}
+                      <img alt="" src={eth}></img> {/* update timestamp */}
                     </div>
                     <span className="message-date" ref={this.messagesEndRef}> {/*append to last message */}
                       Just now
@@ -353,7 +354,7 @@ class UserChat extends Component {
               <div className="hide-scrollbar flex-fill">
                 <div className="text-center p-3">
                   <div className="avatar avatar-xl mx-5 mb-3">
-                    <img className="avatar-img" src={avatar2} alt=""></img>
+                    <img className="avatar-img" src={eth} alt=""></img>
                   </div>
                   <h5 className="mb-1">WALLET ADDRESS</h5>
 

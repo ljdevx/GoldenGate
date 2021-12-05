@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ethers } from "ethers";
 import avatar3 from "../../../assets/media/avatar/3.png";
+import eth from "../../../assets/media/avatar/eth.png";
 import ChatAction from "../../ChatAction/ChatAction";
 
 import { ReactComponent as LocationMarker } from "../../../assets/media/heroicons/solid/location-marker.svg";
