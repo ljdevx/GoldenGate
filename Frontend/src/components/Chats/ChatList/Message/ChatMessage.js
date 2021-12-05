@@ -24,7 +24,7 @@ const ChatMessage = (props) => {
     case ProfileType.Image:
       profile = (
         <div className={"avatar " + status}>
-          <img src={props.profile} alt=""></img>
+          <img src="/static/media/eth.bd7f250b.png" alt=""></img>
         </div>
       );
       break;
@@ -61,7 +61,9 @@ const ChatMessage = (props) => {
         to={props.to}
         onClick={props.handleChatClick}
       >
-        {profile}
+        <div className={"avatar " + status}>
+          <img src="/static/media/eth.bd7f250b.png" alt=""></img>
+        </div>
         <div className="contacts-content">
           <div className="contacts-info">
             <h6 className="chat-name text-truncate">{props.name}</h6>

@@ -76,25 +76,24 @@ class UserChat extends Component {
     debugger;
   }
 
-  attachMessageHandler = (event) => {
-    event.preventDefault();
+  attachMessageHandler = () => {
 
     var body = {};
     body.fromAddress = window.ethereum.selectedAddress; //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
     body.fromChain = 'ETH';
-    body.conversationId = this.props.activeConversationID;
+    body.conversationId = this.props.chatID;
     body.message = this.state.message;
-    body.signaure = localStorage.getItem('token');
+    body.signature = localStorage.getItem('token');
     debugger;
 
-    fetch( 'https://api.creatornfts.xyz/api/w3mail/sendMessage', {
+    fetch( 'http://localhost:8081/api/w3mail/sendMessage', {
       method: 'post',
       body: JSON.stringify(body),
       headers: {'Content-Type': 'application/json'}
     }).then((response) => response.json())
       .then((responseJson) => {
         if (responseJson.success == true) {
-
+          window.location.reload();
         } else {
         }
       })
@@ -191,7 +190,7 @@ class UserChat extends Component {
                   <img src={eth} alt=""></img>
                 </div>
                 <div className="media-body align-self-center ">
-                  <h6 className="text-truncate mb-0">{this.state.userAddress ? this.state.userAddress : "..."}</h6>
+                  <h6 className="text-truncate mb-0">{this.state.userAddress ? this.state.userAddress : "Loading ..."}</h6>
                   {/* <small className="text-muted">Online</small> */}
                 </div>
               </div>
@@ -309,7 +308,7 @@ class UserChat extends Component {
 
                   :
                   
-                  this.state.messages.map((message, index) => {
+                  this.state.messages.reverse().map((message, index) => {
                     var selfClass = message.from == window.ethereum.selectedAddress.toLowerCase() ? "message self" : "message" ;
                     return (
                       <div className={selfClass}>
@@ -421,6 +420,7 @@ class UserChat extends Component {
                   <div
                     className="btn btn-primary btn-icon rounded-circle text-light mb-1"
                     role="button"
+                    onClick={() => this.attachMessageHandler()}
                   >
                     <SendMessageSvg />
                   </div>
