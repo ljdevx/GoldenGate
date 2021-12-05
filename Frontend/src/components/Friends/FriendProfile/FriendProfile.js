@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import avatar3 from "../../../assets/media/avatar/3.png";
+import eth from "../../../assets/media/avatar/eth.png";
 
 import { ReactComponent as ChatSvg } from "../../../assets/media/heroicons/outline/chat.svg";
 import { ReactComponent as CallsSvg } from "../../../assets/media/icons/calls.svg";
@@ -17,11 +18,17 @@ import { ReactComponent as LinkedinSvg } from "../../../assets/media/icons/linke
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+
+
+
 // Friend profile detail
 class FriendProfile extends Component {
+   
   hideMainVisible = () => {
     this.props.hideMain();
   };
+   
+  
   render() {
     return (
       <main
@@ -36,7 +43,7 @@ class FriendProfile extends Component {
                 <div className="card card-body card-bg-1 mb-3">
                   <div className="d-flex flex-column align-items-center">
                     <div className="avatar avatar-lg mb-3">
-                      <img className="avatar-img" src={avatar3} alt=""></img>
+                      <img className="avatar-img" src={eth} alt=""></img>
                     </div>
 
                     <div className="d-flex flex-column align-items-center">
@@ -71,7 +78,7 @@ class FriendProfile extends Component {
                       <div className="media align-items-center">
                         <div className="media-body">
                           <p className="small text-muted mb-0">Wallet Address</p>
-                          <p className="mb-0">0x3jdsgkh493hsdjfkgs</p> {/*make dynamic*/}
+                          <p className="mb-0">0x</p> {/*make dynamic*/}
                         </div>
                         <ClockSvg className="text-muted hw-20" />
                       </div>

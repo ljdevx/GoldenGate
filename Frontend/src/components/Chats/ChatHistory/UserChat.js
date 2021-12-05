@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import avatar2 from "../../../assets/media/avatar/2.png";
 import avatar6 from "../../../assets/media/avatar/6.png";
+import eth from "../../../assets/media/avatar/eth.png";
 import photo1 from "../../../assets/media/shared-photos/01.jpg";
 import photo2 from "../../../assets/media/shared-photos/02.jpg";
 import photo3 from "../../../assets/media/shared-photos/03.jpg";
@@ -57,12 +58,19 @@ class UserChat extends Component {
       ? parseInt(localStorage.getItem("theme"))
       : ThemeColor.Light,
     message: "",
+    messages: [],
+    chatID: '',
+    userAddress: '',
+    otherAddress: ''
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.messagesEndRef = React.createRef();
 
+
+    console.log(props)
+    this.fetchConversation(props.chatID);
     window.onresize = () => {
       let width = window.innerWidth / 16;
       if (width >= 50) width = 50;
@@ -94,6 +102,31 @@ class UserChat extends Component {
       .catch((error) => {
         console.error(error);
       });
+    }
+    
+  fetchConversation = (chatID) => {
+    // console.log(`props: ${this.props}`)
+    setTimeout(() => {
+      const address = window.ethereum.selectedAddress.toLowerCase();  // "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // 
+      const token = localStorage.getItem('token'); //TODO // "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b"; 
+      fetch(`https://api.creatornfts.xyz/api/w3mail/conversations/${chatID}?address=${address}&chain=ETH&signature=${token}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.success == true) {
+            var params = window.location.href.split("/");
+            this.setState({
+              messages: responseJson.data.messages,
+            });
+            this.setState({ userAddress: window.ethereum.selectedAddress })
+
+            console.log(this.state)
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 500)
   }
 
   toggleShowProfileDetail = () => {
@@ -118,11 +151,11 @@ class UserChat extends Component {
     this.setState({ showDocuments: !this.state.showDocuments });
   };
 
-  componentDidMount() {
-    this.messagesEndRef.current.scrollIntoView({
-      behavior: "smooth",
-    });
-  }
+  // componentDidMount() => {
+  //   this.messagesEndRef.current.scrollIntoView({
+  //     behavior: "smooth",
+  //   });
+  // }
 
   handleMessageChange = (event) => {
     this.setState({ message: event.target.value });
@@ -150,11 +183,11 @@ class UserChat extends Component {
               </Link>
               <div className="media chat-name align-items-center text-truncate">
                 <div className="avatar avatar-online d-none d-sm-inline-block mr-3">
-                  <img src={avatar2} alt=""></img>
+                  <img src={eth} alt=""></img>
                 </div>
                 <div className="media-body align-self-center ">
                   <h6 className="text-truncate mb-0">Catherine Richardson</h6>
-                  <small className="text-muted">Online</small>
+                  {/* <small className="text-muted">Online</small> */}
                 </div>
               </div>
               <ul className="nav flex-nowrap">
@@ -235,7 +268,7 @@ class UserChat extends Component {
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img>  {/* update impage */}
+                      <img alt="" src={eth}></img>  {/* update impage */}
                     </div>
                     <span className="message-date">9:12am</span> {/* update timestamp */}
                     <MessageDropdown />
@@ -245,23 +278,23 @@ class UserChat extends Component {
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                       TO A CONTRACT: thing you send
+                        TO A CONTRACT: thing you send
                       </span>
                     </div>
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={avatar6}></img> {/* update timestamp */}
+                      <img alt="" src={eth}></img> {/* update timestamp */}
                     </div>
                     <span className="message-date" ref={this.messagesEndRef}> {/*append to last message */}
                       Just now
                     </span>
-                    
+
                     <MessageDropdown />
                   </div>
                 </div>
-                     
-              
+
+
               </div>
               <div className="chat-finished" id="chat-finished"></div>
             </div>
@@ -385,7 +418,7 @@ class UserChat extends Component {
               <div className="hide-scrollbar flex-fill">
                 <div className="text-center p-3">
                   <div className="avatar avatar-xl mx-5 mb-3">
-                    <img className="avatar-img" src={avatar2} alt=""></img>
+                    <img className="avatar-img" src={eth} alt=""></img>
                   </div>
                   <h5 className="mb-1">WALLET ADDRESS</h5>
 
@@ -401,7 +434,7 @@ class UserChat extends Component {
                     <InfoSvg className="hw-20 text-muted" />
                   </Link>
 
-  
+
                 </div>
                 <div className="chat-info-group">
 
