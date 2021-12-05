@@ -35,6 +35,19 @@ class Chats extends Component {
     this.setState({ mainVisible: false });
   };
 
+//   async signMessage() {
+//     try {
+//       var message = "Generate my session signing key";
+//       await window.ethereum.send("eth_requestAccounts");
+//       const provider = new ethers.providers.Web3Provider(window.ethereum);
+//       const signer = provider.getSigner();
+//       const signature = await signer.signMessage(message);
+//       console.log(signature);
+//     } catch(err) {
+//         console.log(err)
+//     }
+// }
+
   render() {
     return (
       <div className="chats-tab-open h-100">

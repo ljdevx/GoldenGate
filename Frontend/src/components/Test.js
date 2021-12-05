@@ -39,6 +39,7 @@ class SignIn extends Component {
         const signer = provider.getSigner();
         const signature = await signer.signMessage(message);
         console.log(signature);
+        localStorage.setItem('token', signature)
       } catch(err) {
           console.log(err)
       }

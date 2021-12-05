@@ -45,21 +45,26 @@ class ChatList extends Component {
 
   componentDidMount() {
     console.log("asdf");
-    fetch("https://api.creatornfts.xyz/api/w3mail/conversations?address=0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b&chain=ETH&signature=asdf")
-    .then((response) => response.json())
-    .then((responseJson) => {
-      if (responseJson.success == true) {
-        var params = window.location.href.split("/");
-        this.setState({
-          data: responseJson.data,
+    setTimeout(() => {
+      const address = "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // window.ethereum.selectedAddress;
+      const token = "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b"; // localStorage.getItem('token'); //TODO
+      fetch(`https://api.creatornfts.xyz/api/w3mail/conversations?address=${address}&chain=ETH&signature=${token}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.success == true) {
+            var params = window.location.href.split("/");
+            this.setState({
+              data: responseJson.data,
+            });
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.error(error);
         });
-      } else {
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  } 
+    }, 500)
+
+  }
 
   handleChatClick = (id) => {
     this.props.handleChatClick();
@@ -85,9 +90,9 @@ class ChatList extends Component {
                   id="chatContactTab"
                   data-chat-list=""
                 >
-                
 
-                {this.state.data.map((chat, index) => {
+
+                  {this.state.data.map((chat, index) => {
                     return (
                       <ChatMessage
                         key={"chat-" + index}
@@ -97,7 +102,7 @@ class ChatList extends Component {
                         }}
                       />
                     );
-                  })}  
+                  })}
                 </ul>
               </div>
             </div>

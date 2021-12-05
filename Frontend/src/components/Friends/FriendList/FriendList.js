@@ -63,6 +63,7 @@ class FriendList extends Component {
 
   getTransactionAddresses = async (event) => {
     const { status, connect, account } = this.state.metamask;
+    
     var userAddress;
     if (status == "connected") {
       userAddress = account;

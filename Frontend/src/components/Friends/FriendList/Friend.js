@@ -6,8 +6,8 @@ import { ReactComponent as LocationMarker } from "../../../assets/media/heroicon
 const Friend = (props) => {
   
   return (
-    <li className={"contacts-item " + (props.active ? "active" : "")} onClick={() => {console.log(props)}}>
-      <Link to="#" className="contacts-link" target>
+    <li className={"contacts-item " + (props.active ? "active" : "")}>
+      <Link to="/chats" className="contacts-link" target>
         <div className="avatar">
           <img src={avatar3} alt=""></img>
         </div>
