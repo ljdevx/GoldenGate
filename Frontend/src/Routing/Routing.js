@@ -10,6 +10,7 @@ import Calls from "../components/Calls/Calls";
 import Friends from "../components/Friends/Friends";
 import Account from "../components/Account/Account";
 import Documentation from "../components/Documentation/Documentation";
+import Test from "../components/Test";
 
 // Route component to manage app routes
 class Routing extends Component {
@@ -25,6 +26,7 @@ class Routing extends Component {
         <Route path="/Friends" component={Friends} />
         <Route path="/Account" component={Account} />
         <Route path="/Documentation" component={Documentation} />
+        <Route path="/Test" component={Test} />
       </BrowserRouter>
     );
   }
