@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import { ReactComponent as SearchSvg } from "../../../assets/media/icons/search.svg";
 import Group from "./Group";
 import Friend from "./Friend";
+import { useMetaMask } from "metamask-react";
+import { withMetamaskHOC } from "../../Home/MetamaskElement"
+
 
 // Friend list component to list all friends
 class FriendList extends Component {
@@ -15,14 +18,16 @@ class FriendList extends Component {
     search: "",
     AllFriends: [
       {
-        name: "0x",
-        location: "eth",
+        name: "0xWalletAddressYouTrasactedWith",
+        location: "#OfTimesYouTransacted",
         active: true,
       }
     ],
     FilteredFriends: [],
     filteredGroups: [],
-    startChatVisible: this.props.startChatVisible
+    startChatVisible: this.props.startChatVisible,
+    metamask: this.props.metamask
+
   };
 
   setVisible = () => {
@@ -31,8 +36,8 @@ class FriendList extends Component {
 
   componentDidMount() {
     let groups = [];
+    console.log(this.state)
     this.getTransactionAddresses();
-    // this.state.AllFriends = historyAddresses.forEach(transaction => { return { trans: transaction.address, location: transaction.time } })
     this.state.AllFriends.map((friend, index) => {
       if (
         groups.filter(
@@ -52,9 +57,20 @@ class FriendList extends Component {
     });
   }
 
+  componentWillUnmount() {
+    this.state.metamask = null;
+  }
+
   getTransactionAddresses = async (event) => {
-    // const userAddress = "0x9641969bb391A4c125553979D2bA9945f101Dd46"; // TODO@allenn: replace with users address
-    const userAddress = "0x9641969bb391A4c125553979D2bA9945f101Dd46";
+    const { status, connect, account } = this.state.metamask;
+    var userAddress;
+    if (status == "connected") {
+      userAddress = account;
+      console.log(`Connected to MetaMask Wallet ${userAddress}`)
+    } else {
+      alert(`MetaMask Wallet Status: ${status} - go back and log in pls.`)
+      return
+    }
     var provider = new ethers.providers.EtherscanProvider("ropsten", "SGQI4UH2ANC66XKUQB1FJXD9BEFZWXK6RQ"); // TODO@allenn: replace with mainnet
 
     var history = await provider.getHistory(userAddress);
@@ -70,7 +86,7 @@ class FriendList extends Component {
         }
       })
     })
-    addressesToTxMap.delete(userAddress);
+    addressesToTxMap.delete(userAddress); // TODO@allen: figure out why my address is not getting dropped
     addressesToTxMap.delete(null);
 
     var addrToFriends = []
@@ -176,7 +192,6 @@ class FriendList extends Component {
                     </form>
                   </div>
                 </div>
-
                 <ul className="contacts-list" id="friendsTab">
                   {this.state.FilteredFriends.length
                     ? this.state.FilteredFriends.map((friend, index) => {
@@ -209,4 +224,4 @@ class FriendList extends Component {
     );
   }
 }
-export default FriendList;
+export default withMetamaskHOC(FriendList);

@@ -20,22 +20,9 @@ import ResponsiveSvg from "../../assets/media/icons/responsive.svg";
 import { Link } from "react-router-dom";
 import { ThemeColor } from "../../Config/Config";
 import { Accordion, Card } from "react-bootstrap";
+import { MetamaskElement } from "./MetamaskElement";
 
-import { useMetaMask } from "metamask-react";
 
-const MetamaskElement = () => {
-  const { status, connect, account } = useMetaMask();
-  if (status === "initializing") return <div>Synchronisation with MetaMask ongoing...</div>
-
-  if (status === "unavailable") return <div>MetaMask not available :(</div>
-
-  if (status === "notConnected") return <button onClick={connect}>Connect to MetaMask</button>
-
-  if (status === "connecting") return <div>Connecting...</div>
-
-  if (status === "connected") return <div>Connected account: {account}</div>
-  return null;
-}
 // Home page component
 class Home extends Component {
   state = {
@@ -58,9 +45,9 @@ class Home extends Component {
     this.setState({ themeColor: color });
   };
 
-  
 
-  
+
+
   render() {
     return (
       <>
@@ -90,8 +77,8 @@ class Home extends Component {
                   </Link>
                 </div>
                 <div>
-                    <MetamaskElement/>
-                  </div>
+                  <MetamaskElement />
+                </div>
               </div>
             </div>
           </div>
