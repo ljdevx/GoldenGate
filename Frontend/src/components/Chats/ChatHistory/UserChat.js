@@ -86,7 +86,7 @@ class UserChat extends Component {
     body.signature = localStorage.getItem('token');
     debugger;
 
-    fetch( 'http://localhost:8081/api/w3mail/sendMessage', {
+    fetch( 'https://api.creatornfts.xyz/api/w3mail/sendMessage', {
       method: 'post',
       body: JSON.stringify(body),
       headers: {'Content-Type': 'application/json'}
