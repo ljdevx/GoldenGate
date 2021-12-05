@@ -49,23 +49,6 @@ class FriendProfile extends Component {
                       </div>
                     </div>
                   </div>
-
-                  <div className="card-options">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        className="text-muted hw-20 mt-2"
-                        as={VerticalOptionDots}
-                      ></Dropdown.Toggle>
-                      <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
-                        <Link className="dropdown-item" to="#">
-                          Remove
-                        </Link>
-                        <Link className="dropdown-item" to="#">
-                          Block
-                        </Link>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
                   <div className="chat-closer d-xl-none">
                     <button
                       className="btn btn-secondary btn-icon btn-minimal btn-sm text-muted"
