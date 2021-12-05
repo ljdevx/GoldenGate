@@ -40,7 +40,7 @@ class Friends extends Component {
         <div className={"main-layout h-100"}>
           <NavBar activeMenu="friends" />
 
-          <FriendList setMainVisible={this.handleMainVisible} />
+          <FriendList setMainVisible={this.handleMainVisible} startChatVisible={true} />
 
           <FriendProfile
             showMain={this.state.mainVisible}

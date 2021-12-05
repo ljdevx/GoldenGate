@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ethers } from "ethers";
 import avatar3 from "../../../assets/media/avatar/3.png";
 import ChatAction from "../../ChatAction/ChatAction";
 
@@ -7,6 +8,9 @@ import { Link } from "react-router-dom";
 import { ReactComponent as SearchSvg } from "../../../assets/media/icons/search.svg";
 import Group from "./Group";
 import Friend from "./Friend";
+import { useMetaMask } from "metamask-react";
+import { withMetamaskHOC } from "../../Home/MetamaskElement"
+
 
 // Friend list component to list all friends
 class FriendList extends Component {
@@ -14,13 +18,16 @@ class FriendList extends Component {
     search: "",
     AllFriends: [
       {
-        name: "0x",
-        location: "eth",
+        name: "0xWalletAddressYouTrasactedWith",
+        location: "#OfTimesYouTransacted",
         active: true,
       }
     ],
     FilteredFriends: [],
     filteredGroups: [],
+    startChatVisible: this.props.startChatVisible,
+    metamask: this.props.metamask
+
   };
 
   setVisible = () => {
@@ -29,6 +36,8 @@ class FriendList extends Component {
 
   componentDidMount() {
     let groups = [];
+    console.log(this.state)
+    this.getTransactionAddresses();
     this.state.AllFriends.map((friend, index) => {
       if (
         groups.filter(
@@ -47,6 +56,70 @@ class FriendList extends Component {
       filteredGroups: groups,
     });
   }
+
+  componentWillUnmount() {
+    this.state.metamask = null;
+  }
+
+  getTransactionAddresses = async (event) => {
+    const { status, connect, account } = this.state.metamask;
+    var userAddress;
+    if (status == "connected") {
+      userAddress = account;
+      console.log(`Connected to MetaMask Wallet ${userAddress}`)
+    } else {
+      alert(`MetaMask Wallet Status: ${status} - go back and log in pls.`)
+      return
+    }
+    var provider = new ethers.providers.EtherscanProvider("ropsten", "SGQI4UH2ANC66XKUQB1FJXD9BEFZWXK6RQ"); // TODO@allenn: replace with mainnet
+
+    var history = await provider.getHistory(userAddress);
+    var addressesToTxMap = new Map(); // Address : # of transactions
+
+    history.forEach(transaction => {
+      let toFromArr = [transaction.to, transaction.from];
+      toFromArr.forEach(toFromAddress => {
+        if (addressesToTxMap.has(toFromAddress)) {
+          addressesToTxMap.set(toFromAddress, addressesToTxMap.get(toFromAddress) + 1);
+        } else {
+          addressesToTxMap.set(toFromAddress, 1);
+        }
+      })
+    })
+    addressesToTxMap.delete(userAddress); // TODO@allen: figure out why my address is not getting dropped
+    addressesToTxMap.delete(null);
+
+    var addrToFriends = []
+
+    addressesToTxMap.forEach((val, key, map) => {
+      addrToFriends.push({ name: key, location: val })
+    })
+    // console.log(addressesToTxMap)
+    // this.addressesToEns(addrToFriends);
+    // convert to friend list format
+    this.setState({
+      AllFriends: [...addrToFriends],
+      FilteredFriends: [...addrToFriends]
+    })
+    // return addresses;
+  }
+
+  // TODO: Make this function work
+  // addressesToEns = (addresses) => {
+  //   var provider = new ethers.providers.EtherscanProvider("homestead", "SGQI4UH2ANC66XKUQB1FJXD9BEFZWXK6RQ"); // TODO@allenn: replace with mainnet
+  //   console.log(addresses)
+  //   addresses.forEach(friend => {
+  //     if (friend.name) {
+
+  //       provider.lookupAddress(friend.name).then(function (name) {
+  //         console.log(`checking address ${friend.name}`);
+  //         console.log(`name was ${name}`); // TODO: This throws a 403 error
+  //         // 'registrar.firefly.eth'
+  //       });
+  //     }
+  //   })
+  // }
+
 
   handleSearch = (event) => {
     let filteredFriends = [...this.state.AllFriends].filter(
@@ -86,7 +159,15 @@ class FriendList extends Component {
                 <div className="sidebar-header sticky-top p-2">
                   <div className="d-flex justify-content-between align-items-center">
                     <h5 className="font-weight-semibold mb-0">Address Book</h5>
-                    <ChatAction />
+                    {this.state.startChatVisible ?
+
+                      <ChatAction />
+
+                      :
+                      ""
+
+                    }
+
                   </div>
                   <div className="sidebar-sub-header">
                     <form className="form-inline w-100">
@@ -98,6 +179,7 @@ class FriendList extends Component {
                           value={this.state.search}
                           onChange={this.handleSearch}
                         ></input>
+
                         <div className="input-group-append">
                           <div
                             className="input-group-text transparent-bg border-left-0"
@@ -110,29 +192,28 @@ class FriendList extends Component {
                     </form>
                   </div>
                 </div>
-
                 <ul className="contacts-list" id="friendsTab">
                   {this.state.FilteredFriends.length
                     ? this.state.FilteredFriends.map((friend, index) => {
-                        return (
-                          <>
-                            {this.state.filteredGroups.filter(
-                              (x) => x.index === index
-                            ).length ? (
-                              <li>
-                                <small className="font-weight-medium text-uppercase text-muted">
-                                  {
-                                    this.state.filteredGroups.filter(
-                                      (x) => x.index === index
-                                    )[0].g
-                                  }
-                                </small>
-                              </li>
-                            ) : null}
-                            <Friend {...friend} />
-                          </>
-                        );
-                      })
+                      return (
+                        <>
+                          {this.state.filteredGroups.filter(
+                            (x) => x.index === index
+                          ).length ? (
+                            <li>
+                              <small className="font-weight-medium text-uppercase text-muted">
+                                {
+                                  this.state.filteredGroups.filter(
+                                    (x) => x.index === index
+                                  )[0].g
+                                }
+                              </small>
+                            </li>
+                          ) : null}
+                          <Friend {...friend} />
+                        </>
+                      );
+                    })
                     : null}
                 </ul>
               </div>
@@ -143,4 +224,4 @@ class FriendList extends Component {
     );
   }
 }
-export default FriendList;
+export default withMetamaskHOC(FriendList);

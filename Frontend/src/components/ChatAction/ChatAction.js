@@ -47,21 +47,14 @@ class ChatAction extends Component {
       <>
         <ul className="nav flex-nowrap">
           <li className="nav-item list-inline-item mr-0">
-            <Dropdown>
-              <Dropdown.Toggle
-                className="text-muted hw-20 mt-2"
-                as={VerticalOptionDots}
-              ></Dropdown.Toggle>
-              <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
-                <Link
-                  className="dropdown-item"
+          <button
+                  className="btn btn-primary no-box-shadow"
+                  type="button"
+                  data-toggle="modal"
+                  data-target="#startConversation"
                   onClick={this.toggleNewChat}
-                  to="#"
-                >
-                  New Chat
-                </Link>
-              </Dropdown.Menu>
-            </Dropdown>
+                > Start Chat
+                  </button>
           </li>
         </ul>
         {/* Render modal based on button click */}
