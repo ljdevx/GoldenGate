@@ -23,11 +23,14 @@ import {
   UserStatus,
 } from "../../../Config/Config";
 import ChatMessage from "./Message/ChatMessage";
+import UserChat from "../ChatHistory/UserChat";
 
 // Chat list component - To display list // TODO- update with dynamic API call 
 class ChatList extends Component {
   state = {
     data: [],
+    address: '',
+
   };
 
   /*
@@ -46,8 +49,11 @@ class ChatList extends Component {
   componentDidMount() {
     console.log("asdf");
     setTimeout(() => {
-      const address = "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // window.ethereum.selectedAddress;
-      const token = "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b"; // localStorage.getItem('token'); //TODO
+      const address = window.ethereum.selectedAddress.toLowerCase();
+      const token = localStorage.getItem('token');
+      // const address = "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // 
+      // const token = "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b";
+      this.setState({ address: address });
       fetch(`https://api.creatornfts.xyz/api/w3mail/conversations?address=${address}&chain=ETH&signature=${token}`)
         .then((response) => response.json())
         .then((responseJson) => {
@@ -67,7 +73,7 @@ class ChatList extends Component {
   }
 
   handleChatClick = (id) => {
-    this.props.handleChatClick();
+    this.props.handleChatClick(id);
   };
 
 
@@ -94,14 +100,17 @@ class ChatList extends Component {
 
                   {this.state.data.map((chat, index) => {
                     return (
-                      <ChatMessage
-                        key={"chat-" + index}
-                        message={chat.participants[1].address}
-                        handleChatClick={() => {
-                          this.handleChatClick(chat.participants[1].address);
-                        }}
-                      />
+                      <div>
+                        <ChatMessage
+                          key={"chat-" + index}
+                          message={chat.participants[1].address}
+                          handleChatClick={() => {
+                            this.handleChatClick(chat.id);
+                          }}
+                        />
+                      </div>
                     );
+
                   })}
                 </ul>
               </div>

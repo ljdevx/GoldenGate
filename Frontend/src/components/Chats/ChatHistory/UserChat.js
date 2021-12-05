@@ -57,17 +57,49 @@ class UserChat extends Component {
       ? parseInt(localStorage.getItem("theme"))
       : ThemeColor.Light,
     message: "",
+    messages: [],
+    chatID: '',
+    userAddress: '',
+    otherAddress: ''
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.messagesEndRef = React.createRef();
 
+
+    console.log(props)
+    this.fetchConversation(props.chatID);
     window.onresize = () => {
       let width = window.innerWidth / 16;
       if (width >= 50) width = 50;
       this.setState({ emojiWidth: width + "rem" });
     };
+  }
+
+  fetchConversation = (chatID) => {
+    // console.log(`props: ${this.props}`)
+    setTimeout(() => {
+      const address = window.ethereum.selectedAddress.toLowerCase();  // "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // 
+      const token = localStorage.getItem('token'); //TODO // "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b"; 
+      fetch(`https://api.creatornfts.xyz/api/w3mail/conversations/${chatID}?address=${address}&chain=ETH&signature=${token}`)
+        .then((response) => response.json())
+        .then((responseJson) => {
+          if (responseJson.success == true) {
+            var params = window.location.href.split("/");
+            this.setState({
+              messages: responseJson.data.messages,
+            });
+            this.setState({ userAddress: window.ethereum.selectedAddress })
+
+            console.log(this.state)
+          } else {
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }, 500)
   }
 
   toggleShowProfileDetail = () => {
@@ -126,7 +158,7 @@ class UserChat extends Component {
                 </div>
                 <div className="media-body align-self-center ">
                   <h6 className="text-truncate mb-0">Catherine Richardson</h6>
-                  <small className="text-muted">Online</small>
+                  {/* <small className="text-muted">Online</small> */}
                 </div>
               </div>
               <ul className="nav flex-nowrap">
@@ -217,7 +249,7 @@ class UserChat extends Component {
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                       TO A CONTRACT: thing you send
+                        TO A CONTRACT: thing you send
                       </span>
                     </div>
                   </div>
@@ -228,12 +260,12 @@ class UserChat extends Component {
                     <span className="message-date" ref={this.messagesEndRef}> {/*append to last message */}
                       Just now
                     </span>
-                    
+
                     <MessageDropdown />
                   </div>
                 </div>
-                     
-              
+
+
               </div>
               <div className="chat-finished" id="chat-finished"></div>
             </div>
@@ -369,7 +401,7 @@ class UserChat extends Component {
                     <InfoSvg className="hw-20 text-muted" />
                   </Link>
 
-  
+
                 </div>
                 <div className="chat-info-group">
 
