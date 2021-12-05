@@ -8,9 +8,14 @@ import GroupChat from "./GroupChat";
 function ChatHistory(props) {
   return (
     <>
-      <Route path="/Chats" component={EmptyChat} exact />
+      {/* <Route path="/Chats" component={EmptyChat} exact />
       <Route path="/Chats/user1" component={UserChat} exact />
-      <Route path="/Chats/group1" component={GroupChat} exact />
+      <Route path="/Chats/group1" component={GroupChat} exact /> */}
+      <UserChat
+
+        chatID={props.activeConversationID}
+      // userAddress={this.state.address}
+      />
     </>
   );
 }

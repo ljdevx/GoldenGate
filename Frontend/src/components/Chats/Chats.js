@@ -13,6 +13,7 @@ class Chats extends Component {
       ? parseInt(localStorage.getItem("theme"))
       : ThemeColor.Light,
     isRTL: Boolean(localStorage.getItem("rtl")),
+    activeConversationID: null
   };
 
   // Load selected theme
@@ -27,15 +28,30 @@ class Chats extends Component {
     else document.body.removeAttribute("dir");
   }
 
-  handleChatClick = () => {
+  handleChatClick = (id) => {
     this.setState({ mainVisible: true });
+    this.setState({ activeConversationID: id });
   };
 
   handleBackToList = () => {
     this.setState({ mainVisible: false });
   };
 
+  //   async signMessage() {
+  //     try {
+  //       var message = "Generate my session signing key";
+  //       await window.ethereum.send("eth_requestAccounts");
+  //       const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //       const signer = provider.getSigner();
+  //       const signature = await signer.signMessage(message);
+  //       console.log(signature);
+  //     } catch(err) {
+  //         console.log(err)
+  //     }
+  // }
+
   render() {
+    // console.log(this.state.activeConversationID)
     return (
       <div className="chats-tab-open h-100">
         <div className={"main-layout h-100"}>
@@ -44,6 +60,7 @@ class Chats extends Component {
           <ChatList handleChatClick={this.handleChatClick} />
 
           <ChatHistory
+            activeConversationID={this.state.activeConversationID}
             mainVisible={this.state.mainVisible}
             BackToListClicked={this.handleBackToList}
           />
