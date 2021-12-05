@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ethers } from "ethers";
 import avatar3 from "../../../assets/media/avatar/3.png";
 import ChatAction from "../../ChatAction/ChatAction";
 
@@ -21,6 +22,7 @@ class FriendList extends Component {
     ],
     FilteredFriends: [],
     filteredGroups: [],
+    startChatVisible: this.props.startChatVisible
   };
 
   setVisible = () => {
@@ -29,6 +31,8 @@ class FriendList extends Component {
 
   componentDidMount() {
     let groups = [];
+    this.getTransactionAddresses();
+    // this.state.AllFriends = historyAddresses.forEach(transaction => { return { trans: transaction.address, location: transaction.time } })
     this.state.AllFriends.map((friend, index) => {
       if (
         groups.filter(
@@ -47,6 +51,59 @@ class FriendList extends Component {
       filteredGroups: groups,
     });
   }
+
+  getTransactionAddresses = async (event) => {
+    // const userAddress = "0x9641969bb391A4c125553979D2bA9945f101Dd46"; // TODO@allenn: replace with users address
+    const userAddress = "0x9641969bb391A4c125553979D2bA9945f101Dd46";
+    var provider = new ethers.providers.EtherscanProvider("ropsten", "SGQI4UH2ANC66XKUQB1FJXD9BEFZWXK6RQ"); // TODO@allenn: replace with mainnet
+
+    var history = await provider.getHistory(userAddress);
+    var addressesToTxMap = new Map(); // Address : # of transactions
+
+    history.forEach(transaction => {
+      let toFromArr = [transaction.to, transaction.from];
+      toFromArr.forEach(toFromAddress => {
+        if (addressesToTxMap.has(toFromAddress)) {
+          addressesToTxMap.set(toFromAddress, addressesToTxMap.get(toFromAddress) + 1);
+        } else {
+          addressesToTxMap.set(toFromAddress, 1);
+        }
+      })
+    })
+    addressesToTxMap.delete(userAddress);
+    addressesToTxMap.delete(null);
+
+    var addrToFriends = []
+
+    addressesToTxMap.forEach((val, key, map) => {
+      addrToFriends.push({ name: key, location: val })
+    })
+    // console.log(addressesToTxMap)
+    // this.addressesToEns(addrToFriends);
+    // convert to friend list format
+    this.setState({
+      AllFriends: [...addrToFriends],
+      FilteredFriends: [...addrToFriends]
+    })
+    // return addresses;
+  }
+
+  // TODO: Make this function work
+  // addressesToEns = (addresses) => {
+  //   var provider = new ethers.providers.EtherscanProvider("homestead", "SGQI4UH2ANC66XKUQB1FJXD9BEFZWXK6RQ"); // TODO@allenn: replace with mainnet
+  //   console.log(addresses)
+  //   addresses.forEach(friend => {
+  //     if (friend.name) {
+
+  //       provider.lookupAddress(friend.name).then(function (name) {
+  //         console.log(`checking address ${friend.name}`);
+  //         console.log(`name was ${name}`); // TODO: This throws a 403 error
+  //         // 'registrar.firefly.eth'
+  //       });
+  //     }
+  //   })
+  // }
+
 
   handleSearch = (event) => {
     let filteredFriends = [...this.state.AllFriends].filter(
@@ -86,7 +143,15 @@ class FriendList extends Component {
                 <div className="sidebar-header sticky-top p-2">
                   <div className="d-flex justify-content-between align-items-center">
                     <h5 className="font-weight-semibold mb-0">Address Book</h5>
-                    <ChatAction />
+                    {this.state.startChatVisible ?
+
+                      <ChatAction />
+
+                      :
+                      ""
+
+                    }
+
                   </div>
                   <div className="sidebar-sub-header">
                     <form className="form-inline w-100">
@@ -98,6 +163,7 @@ class FriendList extends Component {
                           value={this.state.search}
                           onChange={this.handleSearch}
                         ></input>
+
                         <div className="input-group-append">
                           <div
                             className="input-group-text transparent-bg border-left-0"
@@ -114,25 +180,25 @@ class FriendList extends Component {
                 <ul className="contacts-list" id="friendsTab">
                   {this.state.FilteredFriends.length
                     ? this.state.FilteredFriends.map((friend, index) => {
-                        return (
-                          <>
-                            {this.state.filteredGroups.filter(
-                              (x) => x.index === index
-                            ).length ? (
-                              <li>
-                                <small className="font-weight-medium text-uppercase text-muted">
-                                  {
-                                    this.state.filteredGroups.filter(
-                                      (x) => x.index === index
-                                    )[0].g
-                                  }
-                                </small>
-                              </li>
-                            ) : null}
-                            <Friend {...friend} />
-                          </>
-                        );
-                      })
+                      return (
+                        <>
+                          {this.state.filteredGroups.filter(
+                            (x) => x.index === index
+                          ).length ? (
+                            <li>
+                              <small className="font-weight-medium text-uppercase text-muted">
+                                {
+                                  this.state.filteredGroups.filter(
+                                    (x) => x.index === index
+                                  )[0].g
+                                }
+                              </small>
+                            </li>
+                          ) : null}
+                          <Friend {...friend} />
+                        </>
+                      );
+                    })
                     : null}
                 </ul>
               </div>
