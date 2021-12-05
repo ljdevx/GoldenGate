@@ -25,7 +25,7 @@ function NavBar(props) {
               (props.activeMenu === "chat" ? "active" : "")
             }
             id="chats-tab"
-            to="/Chats"
+            to="/Chats/user1"
             title="Chats"
           >
             <ChatsSvg />

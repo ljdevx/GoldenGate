@@ -27,27 +27,10 @@ import ChatMessage from "./Message/ChatMessage";
 // Chat list component - To display list // TODO- update with dynamic API call 
 class ChatList extends Component {
   state = {
-    ChatUserId: "",
-    search: "",
-    filterOption: ChatFilterOptions.AllChats,
-    AllChatList: [
-      {
-        ChatUserId: "user1",
-        to: "/Chats/user1",
-        name: "Catherine Richardson",
-        profile: avatar2,
-        profileType: ProfileType.Image,
-        time: "Just now",
-        message: "I’m sorry, I didn’t catch that. Could you please repeat?",
-        status: UserStatus.Online,
-        filter: ChatFilterOptions.Friends,
-      }
-      
-    ],
-    FilterChatList: [],
+    data: [],
   };
 
-  // Get userid from parameter to load perticular user chat history
+  /*
   componentDidMount() {
     var params = window.location.href.split("/");
     this.setState({
@@ -58,39 +41,30 @@ class ChatList extends Component {
       }),
     });
   }
+*/
+
+  componentDidMount() {
+    console.log("asdf");
+    fetch("https://api.creatornfts.xyz/api/w3mail/conversations?address=0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b&chain=ETH&signature=asdf")
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if (responseJson.success == true) {
+        var params = window.location.href.split("/");
+        this.setState({
+          data: responseJson.data,
+        });
+      } else {
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  } 
 
   handleChatClick = (id) => {
     this.props.handleChatClick();
   };
 
-  handleFilterOptionChanged = (option) => {
-    let chatList = [...this.state.AllChatList];
-    if (option !== ChatFilterOptions.AllChats)
-      chatList = chatList.filter((x) => x.filter === option);
-
-    this.setState({
-      filterOption: option,
-      FilterChatList: chatList,
-      search: "",
-    });
-  };
-
-  handleSearchChat = (event) => {
-    let chatList = [...this.state.AllChatList];
-    if (this.state.filterOption !== ChatFilterOptions.AllChats)
-      chatList = chatList.filter((x) => x.filter === this.state.filterOption);
-
-    if (event.target.value) {
-      chatList = chatList.filter(
-        (x) =>
-          x.name.toLowerCase().indexOf(event.target.value.toLowerCase()) >= 0
-      );
-    }
-    this.setState({
-      search: event.target.value,
-      FilterChatList: chatList,
-    });
-  };
 
   render() {
     return (
@@ -104,29 +78,26 @@ class ChatList extends Component {
                     <h5 className="font-weight-semibold mb-0">Chats</h5>
                     <ChatAction />
                   </div>
-                  <ChatFilter
-                    selectedOption={this.state.filterOption}
-                    filterOptionChanged={this.handleFilterOptionChanged}
-                    search={this.state.search}
-                    handleSearch={this.handleSearchChat}
-                  />
+
                 </div>
                 <ul
                   className="contacts-list"
                   id="chatContactTab"
                   data-chat-list=""
                 >
-                  {this.state.FilterChatList.map((chat, index) => {
+                
+
+                {this.state.data.map((chat, index) => {
                     return (
                       <ChatMessage
-                        key={"chat" + index}
-                        {...chat}
+                        key={"chat-" + index}
+                        message={chat.participants[1].address}
                         handleChatClick={() => {
-                          this.handleChatClick(chat.ChatUserId);
+                          this.handleChatClick(chat.participants[1].address);
                         }}
                       />
                     );
-                  })}
+                  })}  
                 </ul>
               </div>
             </div>
