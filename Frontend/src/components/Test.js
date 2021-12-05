@@ -40,6 +40,7 @@ class SignIn extends Component {
         const signature = await signer.signMessage(message);
         console.log(signature);
         localStorage.setItem('token', signature)
+        window.location.href = "Chats";
       } catch(err) {
           console.log(err)
       }

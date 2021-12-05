@@ -26,6 +26,7 @@ class Routing extends Component {
         <Route path="/Friends" component={Friends} />
         <Route path="/Account" component={Account} />
         <Route path="/Documentation" component={Documentation} />
+        <Route path="/Access" component={Test} />
         <Route path="/Test" component={Test} />
       </BrowserRouter>
     );

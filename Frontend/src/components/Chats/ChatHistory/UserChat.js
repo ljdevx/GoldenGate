@@ -67,26 +67,25 @@ class UserChat extends Component {
   constructor(props) {
     super(props);
     this.messagesEndRef = React.createRef();
-
-
-    console.log(props)
-    this.fetchConversation(props.chatID);
+    this.fetchConversation(this.props.chatID);
     window.onresize = () => {
       let width = window.innerWidth / 16;
       if (width >= 50) width = 50;
       this.setState({ emojiWidth: width + "rem" });
     };
+    debugger;
   }
 
   attachMessageHandler = (event) => {
     event.preventDefault();
 
     var body = {};
-    body.fromAddress = 'c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77'; //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
+    body.fromAddress = window.ethereum.selectedAddress; //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
     body.fromChain = 'ETH';
-    body.conversationId = 'c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77';
-    body.message = 'Heyyy'; //this.state.message;
-    body.signaure = '0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b';
+    body.conversationId = this.props.activeConversationID;
+    body.message = this.state.message;
+    body.signaure = localStorage.getItem('token');
+    debugger;
 
     fetch( 'https://api.creatornfts.xyz/api/w3mail/sendMessage', {
       method: 'post',
@@ -105,28 +104,34 @@ class UserChat extends Component {
     }
     
   fetchConversation = (chatID) => {
-    // console.log(`props: ${this.props}`)
+    if (!this.props.chatID) {
+      // loading
+      return;
+    }
+    debugger;
     setTimeout(() => {
       const address = window.ethereum.selectedAddress.toLowerCase();  // "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // 
       const token = localStorage.getItem('token'); //TODO // "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b"; 
+      console.log(address);
+      const thisRef = this;
+      debugger;
       fetch(`https://api.creatornfts.xyz/api/w3mail/conversations/${chatID}?address=${address}&chain=ETH&signature=${token}`)
         .then((response) => response.json())
         .then((responseJson) => {
           if (responseJson.success == true) {
-            var params = window.location.href.split("/");
-            this.setState({
+            thisRef.setState({
               messages: responseJson.data.messages,
+              userAddress: responseJson.data.participants[1].address
             });
-            this.setState({ userAddress: window.ethereum.selectedAddress })
-
-            console.log(this.state)
+            console.log(thisRef.state)
+            debugger;
           } else {
           }
         })
         .catch((error) => {
           console.error(error);
         });
-    }, 500)
+    }, 1000)
   }
 
   toggleShowProfileDetail = () => {
@@ -186,7 +191,7 @@ class UserChat extends Component {
                   <img src={eth} alt=""></img>
                 </div>
                 <div className="media-body align-self-center ">
-                  <h6 className="text-truncate mb-0">Catherine Richardson</h6>
+                  <h6 className="text-truncate mb-0">{this.state.userAddress ? this.state.userAddress : "..."}</h6>
                   {/* <small className="text-muted">Online</small> */}
                 </div>
               </div>
@@ -254,45 +259,79 @@ class UserChat extends Component {
 
             <div className="chat-content p-2">
               <div className="container">
-                <div
+                {/* <div
                   className="message-divider pb-2"
                   data-label="Yesterday"
-                ></div>
-                <div className="message">
+                ></div> */}
+                {/* <div className="message">
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                        FROM A CONTRACT: thing you receive
+                        Loading ... 
                       </span>
                     </div>
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={eth}></img>  {/* update impage */}
+                      <img alt="" src={eth}></img>  {/* update impage 
                     </div>
                     <span className="message-date">9:12am</span> {/* update timestamp */}
-                    <MessageDropdown />
+                    {/* <MessageDropdown /> 
                   </div>
                 </div>
                 <div className="message self">
                   <div className="message-wrapper">
                     <div className="message-content">
                       <span>
-                        TO A CONTRACT: thing you send
+                        Loading ...
                       </span>
                     </div>
                   </div>
                   <div className="message-options">
                     <div className="avatar avatar-sm">
-                      <img alt="" src={eth}></img> {/* update timestamp */}
+                      <img alt="" src={eth}></img> {/* update timestamp 
                     </div>
-                    <span className="message-date" ref={this.messagesEndRef}> {/*append to last message */}
+                    <span className="message-date" ref={this.messagesEndRef}> {/*append to last message
                       Just now
                     </span>
 
-                    <MessageDropdown />
+                    {/* <MessageDropdown />
                   </div>
-                </div>
+                </div> */}
+
+                {
+                  this.state.messages.count == 0 ? 
+
+                  <div
+                  className="message-divider pb-2"
+                  data-label="Yesterday"
+                  ></div>
+
+                  :
+                  
+                  this.state.messages.map((message, index) => {
+                    var selfClass = message.from == window.ethereum.selectedAddress.toLowerCase() ? "message self" : "message" ;
+                    return (
+                      <div className={selfClass}>
+                        <div className="message-wrapper">
+                          <div className="message-content">
+                            <span>
+                              {message.message}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="message-options">
+                          <div className="avatar avatar-sm">
+                            <img alt="" src={eth}></img> {/* update timestamp */}
+                          </div>
+
+                          {/* <MessageDropdown /> */}
+                        </div>
+                      </div>
+                  )})
+              }
+
+                
 
 
               </div>

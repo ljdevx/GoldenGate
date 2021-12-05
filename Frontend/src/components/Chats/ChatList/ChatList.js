@@ -54,6 +54,7 @@ class ChatList extends Component {
       // const address = "0x3aaa363e21424aB8Fb598f5763ba874bbb0B600b"; // 
       // const token = "0xf14098cae6b5717d37b563da93b28eaa8ea75460ac16452effa8ec128d2c41284f6fd7b2bc17e18911e20bd1e5685fff08144f76cead08fd45999676a8b827671b";
       this.setState({ address: address });
+      const thisRef = this;
       fetch(`https://api.creatornfts.xyz/api/w3mail/conversations?address=${address}&chain=ETH&signature=${token}`)
         .then((response) => response.json())
         .then((responseJson) => {
@@ -62,18 +63,23 @@ class ChatList extends Component {
             this.setState({
               data: responseJson.data,
             });
+
+            var firstConvId = responseJson.data[0].id;
+            thisRef.handleChatClick(firstConvId);
+
           } else {
           }
         })
         .catch((error) => {
           console.error(error);
         });
-    }, 500)
+    }, 1000)
 
   }
 
   handleChatClick = (id) => {
     this.props.handleChatClick(id);
+    debugger;
   };
 
 
@@ -103,7 +109,8 @@ class ChatList extends Component {
                       <div>
                         <ChatMessage
                           key={"chat-" + index}
-                          message={chat.participants[1].address}
+                          name={chat.participants[1].address}
+                          message={chat.messages[0].message}
                           handleChatClick={() => {
                             this.handleChatClick(chat.id);
                           }}

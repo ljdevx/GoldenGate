@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 
 import ChatList from "./ChatList/ChatList";
 import ChatHistory from "./ChatHistory/ChatHistory";
+import UserChat from "./ChatHistory/UserChat";
 import { ThemeColor } from "../../Config/Config";
 
 // Chat master component
@@ -29,8 +30,8 @@ class Chats extends Component {
   }
 
   handleChatClick = (id) => {
-    this.setState({ mainVisible: true });
-    this.setState({ activeConversationID: id });
+    this.setState({ mainVisible: true, activeConversationID: id });
+    debugger;
   };
 
   handleBackToList = () => {
@@ -59,11 +60,15 @@ class Chats extends Component {
 
           <ChatList handleChatClick={this.handleChatClick} />
 
-          <ChatHistory
+        {this.state.activeConversationID ? 
+        <UserChat chatID={this.state.activeConversationID} /> :
+        <UserChat chatID="" /> }
+
+          {/* <ChatHistory
             activeConversationID={this.state.activeConversationID}
             mainVisible={this.state.mainVisible}
             BackToListClicked={this.handleBackToList}
-          />
+          /> */}
           <div className="backdrop"></div>
         </div>
       </div>
