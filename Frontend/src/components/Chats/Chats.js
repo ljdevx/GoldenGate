@@ -14,7 +14,7 @@ class Chats extends Component {
       ? parseInt(localStorage.getItem("theme"))
       : ThemeColor.Light,
     isRTL: Boolean(localStorage.getItem("rtl")),
-    activeConversationID: null
+    activeConversationID: 'c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77'
   };
 
   // Load selected theme

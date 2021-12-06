@@ -79,7 +79,7 @@ class UserChat extends Component {
   attachMessageHandler = () => {
 
     var body = {};
-    body.fromAddress = window.ethereum.selectedAddress; //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
+    body.fromAddress = window.ethereum.selectedAddress.toLowerCase(); //c454dd6eb-d31f-4fbf-b3e6-44ecf2070b77
     body.fromChain = 'ETH';
     body.conversationId = this.props.chatID;
     body.message = this.state.message;

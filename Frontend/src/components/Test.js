@@ -52,7 +52,7 @@ class SignIn extends Component {
         <div className="container d-flex flex-column">
           <div className="row no-gutters text-center align-items-center justify-content-center min-vh-100">
             <div className="col-12 col-md-6 col-lg-5 col-xl-4">
-              <h1 className="font-weight-bold">Sign in</h1>
+              <h1 className="font-weight-bold">Golden Gate</h1>
               <p className="text-dark mb-3">
                 We are Different, We Make You Different.
               </p>
